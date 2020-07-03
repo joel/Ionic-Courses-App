@@ -2,14 +2,26 @@ import React from 'react';
 
 import { Route, Redirect } from 'react-router-dom';
 
-import { IonApp, IonRouterOutlet, IonTabBar, IonTabs, IonTabButton, IonIcon, IonLabel } from '@ionic/react'
-import { list, trophyOutline } from 'ionicons/icons';
+import {
+  IonApp, IonRouterOutlet, IonTabBar, IonTabs, IonTabButton,
+  IonIcon, IonLabel, IonMenu,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonList,
+  IonItem,
+  IonMenuToggle,
+} from '@ionic/react'
+
+import { list, trophyOutline, options } from 'ionicons/icons';
 
 import { IonReactRouter } from '@ionic/react-router'
 
 import Courses from './pages/Courses';
 import CourseGoals from './pages/CourseGoals';
 import AllGoals from './pages/AllGoals';
+import Filter from './pages/Filter';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -34,13 +46,43 @@ import './theme/theme.css';
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
+      <IonMenu contentId='main'>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>
+              Course Goals
+            </IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <IonList>
+            <IonMenuToggle>
+              <IonItem button routerLink='/all-goals' routerDirection='none'>
+                <IonIcon slot='start' icon={list} />
+                <IonLabel>
+                  All Goals
+                </IonLabel>
+              </IonItem>
+              <IonItem button routerLink='/filter' routerDirection='none'>
+                <IonIcon slot='start' icon={options} />
+                <IonLabel>
+                  Filter
+              </IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+          </IonList>
+        </IonContent>
+      </IonMenu>
       <IonTabs>
-        <IonRouterOutlet>
+        <IonRouterOutlet id='main'>
           <Route path='/courses' exact>
             <Courses />
           </Route>
           <Route path='/courses/:courseId'>
             <CourseGoals />
+          </Route>
+          <Route path='/filter'>
+            <Filter />
           </Route>
           <Route path='/all-goals'>
             <AllGoals />

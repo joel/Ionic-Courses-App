@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { IonHeader, IonContent, IonToolbar, IonTitle, IonPage,
-  IonButton, IonMenuButton } from '@ionic/react';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonMenuButton } from '@ionic/react';
 
-const AllGoals: React.FC = () => {
+const Filter: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -12,17 +11,17 @@ const AllGoals: React.FC = () => {
             <IonMenuButton />
           </IonButton>
           <IonTitle>
-            Course Goals
+            Filter
           </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
         <h2>
-          This works - all goals page!
+          The filter page.... (WIP)
         </h2>
       </IonContent>
     </IonPage>
   );
 };
 
-export default AllGoals;
+export default Filter;
