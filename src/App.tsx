@@ -39,7 +39,7 @@ const App: React.FC = () => (
           <Route path='/courses' exact>
             <Courses />
           </Route>
-          <Route path='/course-goals'>
+          <Route path='/courses/:courseId'>
             <CourseGoals />
           </Route>
           <Route path='/all-goals'>

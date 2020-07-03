@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { IonHeader, IonContent, IonToolbar, IonTitle, IonButton, IonPage } from '@ionic/react';
+import { IonHeader, IonContent, IonToolbar, IonTitle, IonGrid, IonPage,
+  IonRow, IonCol, IonCard, IonCardContent, IonButton } from '@ionic/react';
+
+export const COURSE_DATA = [
+  { id: 'b1', title: 'English B1' },
+  { id: 'b2', title: 'English B2' },
+  { id: 'c1', title: 'English C1' },
+];
 
 const Courses: React.FC = () => {
   return (
@@ -13,14 +20,24 @@ const Courses: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <h2>
-          This works - Courses page!
-        </h2>
-        <div>
-          <IonButton routerLink='/course-goals'>
-            To Course Goal
-          </IonButton>
-        </div>
+        <IonGrid>
+          {COURSE_DATA.map(course => (
+            <IonRow key={course.id}>
+              <IonCol size-md='4' offset-md='4'>
+                <IonCard>
+                  <IonCardContent className='ion-text-center'>
+                    <h2>
+                      {course.title}
+                    </h2>
+                    <IonButton routerLink={`/courses/${course.id}`}>
+                      View Course Goals
+                    </IonButton>
+                  </IonCardContent>
+                </IonCard>
+              </IonCol>
+            </IonRow>
+          ))}
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
