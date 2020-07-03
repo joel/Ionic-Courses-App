@@ -1,13 +1,15 @@
 import React from 'react';
 
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
-import { IonApp, IonRouterOutlet } from '@ionic/react'
+import { IonApp, IonRouterOutlet, IonTabBar, IonTabs, IonTabButton, IonIcon, IonLabel } from '@ionic/react'
+import { list, trophyOutline } from 'ionicons/icons';
 
 import { IonReactRouter } from '@ionic/react-router'
 
 import Courses from './pages/Courses';
 import CourseGoals from './pages/CourseGoals';
+import AllGoals from './pages/AllGoals';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -27,20 +29,39 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-
-import './pages/Courses';
+import './theme/theme.css';
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path='/' exact>
-          <Courses />
-        </Route>
-        <Route path='/course-goals'>
-          <CourseGoals />
-        </Route>
-      </IonRouterOutlet>
+      <IonTabs>
+        <IonRouterOutlet>
+          <Route path='/courses' exact>
+            <Courses />
+          </Route>
+          <Route path='/course-goals'>
+            <CourseGoals />
+          </Route>
+          <Route path='/all-goals'>
+            <AllGoals />
+          </Route>
+          <Redirect to='/courses' />
+        </IonRouterOutlet>
+        <IonTabBar slot='bottom'>
+          <IonTabButton tab='all-goals' href='/all-goals'>
+            <IonIcon icon={list} />
+            <IonLabel>
+              All Goals
+            </IonLabel>
+          </IonTabButton>
+          <IonTabButton tab='courses' href='/courses'>
+            <IonIcon icon={trophyOutline} />
+            <IonLabel>
+              Courses
+            </IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );
