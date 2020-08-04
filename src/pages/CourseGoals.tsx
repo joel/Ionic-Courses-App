@@ -7,11 +7,11 @@ import {
   IonTitle,
   IonPage,
   IonButtons,
+  IonButton,
   IonBackButton,
   IonList,
   IonItem,
   IonLabel,
-  IonButton,
   IonIcon,
   IonItemSliding,
   IonItemOptions,
@@ -19,7 +19,7 @@ import {
 } from '@ionic/react';
 
 import { useParams } from 'react-router-dom';
-import { create, trash } from 'ionicons/icons';
+import { create, trash, addOutline } from 'ionicons/icons';
 
 import { COURSE_DATA } from './Courses';
 
@@ -37,12 +37,21 @@ const CourseGoals: React.FC = () => {
     console.log('Edited...')
   };
 
+  const startAddGoalHandler = () => {
+    console.log('Adding goals...')
+  };
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot='start'>
-            <IonBackButton defaultHref='/' />
+            <IonBackButton defaultHref='/courses/list' />
+          </IonButtons>
+          <IonButtons slot='end'>
+            <IonButton onClick={startAddGoalHandler}>
+              <IonIcon slot='icon-only' icon={addOutline} />
+            </IonButton>
           </IonButtons>
           <IonTitle>
             {selectedCourse ? selectedCourse.title : 'No Course Found!'}
