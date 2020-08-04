@@ -13,10 +13,13 @@ import {
   IonLabel,
   IonButton,
   IonIcon,
+  IonItemSliding,
+  IonItemOptions,
+  IonItemOption,
 } from '@ionic/react';
 
 import { useParams } from 'react-router-dom';
-import { create } from 'ionicons/icons';
+import { create, trash } from 'ionicons/icons';
 
 import { COURSE_DATA } from './Courses';
 
@@ -25,7 +28,7 @@ const CourseGoals: React.FC = () => {
 
   const selectedCourse = COURSE_DATA.find(c => c.id === selectedCourseId);
 
-  const deleteItemHandler = () => {
+  const deleteGoalHandler = () => {
     console.log('Deleted...');
   };
 
@@ -48,14 +51,27 @@ const CourseGoals: React.FC = () => {
       </IonHeader>
       <IonContent>
         {selectedCourse && <IonList>
-          {selectedCourse.goals.map(goal => <IonItem key={goal.id} lines='full' button onClick={deleteItemHandler}>
-            <IonLabel>
-              {goal.text}
-            </IonLabel>
-            <IonButton slot='end' fill='clear' color='dark' onClick={startEditGoalHandler}>
-              <IonIcon slot='icon-only' icon={create}/>
-            </IonButton>
-          </IonItem>)}
+          {
+            selectedCourse.goals.map(goal => (
+              <IonItemSliding key={goal.id}>
+                <IonItemOptions side='start'>
+                  <IonItemOption onClick={deleteGoalHandler} color='danger'>
+                    <IonIcon slot='icon-only' icon={trash} />
+                  </IonItemOption>
+                </IonItemOptions>
+                <IonItem lines='full'>
+                  <IonLabel>
+                    {goal.text}
+                  </IonLabel>
+                </IonItem>
+                <IonItemOptions side='end'>
+                  <IonItemOption onClick={startEditGoalHandler}>
+                    <IonIcon slot='icon-only' icon={create} />
+                  </IonItemOption>
+                </IonItemOptions>
+              </IonItemSliding>
+            ))
+          }
         </IonList>}
       </IonContent>
     </IonPage>
