@@ -16,6 +16,9 @@ import {
   IonItemSliding,
   IonItemOptions,
   IonItemOption,
+  IonFab,
+  IonFabButton,
+  isPlatform,
 } from '@ionic/react';
 
 import { useParams } from 'react-router-dom';
@@ -48,11 +51,13 @@ const CourseGoals: React.FC = () => {
           <IonButtons slot='start'>
             <IonBackButton defaultHref='/courses/list' />
           </IonButtons>
-          <IonButtons slot='end'>
-            <IonButton onClick={startAddGoalHandler}>
-              <IonIcon slot='icon-only' icon={addOutline} />
-            </IonButton>
-          </IonButtons>
+          { !isPlatform('android') &&
+            <IonButtons slot='end'>
+              <IonButton onClick={startAddGoalHandler} color='secondary'>
+                <IonIcon slot='icon-only' icon={addOutline} />
+              </IonButton>
+            </IonButtons>
+          }
           <IonTitle>
             {selectedCourse ? selectedCourse.title : 'No Course Found!'}
           </IonTitle>
@@ -82,6 +87,13 @@ const CourseGoals: React.FC = () => {
             ))
           }
         </IonList>}
+        { isPlatform('android') &&
+          <IonFab horizontal='end' vertical='bottom' slot='fixed'>
+            <IonFabButton color='secondary' onClick={startAddGoalHandler}>
+              <IonIcon icon={addOutline} />
+            </IonFabButton>
+          </IonFab>
+        }
       </IonContent>
     </IonPage>
   );
