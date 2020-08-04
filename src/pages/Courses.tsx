@@ -1,9 +1,20 @@
 import React from 'react';
 
 import {
-  IonHeader, IonContent, IonToolbar, IonTitle, IonGrid, IonPage,
-  IonRow, IonCol, IonCard, IonCardContent, IonButton,
-  IonCardHeader, IonCardTitle, IonCardSubtitle
+  IonHeader,
+  IonContent,
+  IonToolbar,
+  IonTitle,
+  IonGrid,
+  IonPage,
+  IonRow, 
+  IonCol,
+  IonCard,
+  IonCardContent,
+  IonButton,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle
 } from '@ionic/react';
 
 export const COURSE_DATA = [

@@ -3,8 +3,14 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import {
-  IonApp, IonRouterOutlet, IonTabBar, IonTabs, IonTabButton,
-  IonIcon, IonLabel, IonMenu,
+  IonApp,
+  IonRouterOutlet, 
+  IonTabBar, 
+  IonTabs, 
+  IonTabButton,
+  IonIcon,
+  IonLabel, 
+  IonMenu,
   IonHeader,
   IonToolbar,
   IonTitle,

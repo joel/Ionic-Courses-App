@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonMenuButton } from '@ionic/react';
+import { IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonButton,
+  IonMenuButton
+} from '@ionic/react';
 
 const Filter: React.FC = () => {
   return (
