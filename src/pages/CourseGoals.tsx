@@ -20,6 +20,7 @@ import {
   IonFabButton,
   isPlatform,
   IonAlert,
+  IonToast,
 } from '@ionic/react';
 
 import { useParams } from 'react-router-dom';
@@ -29,6 +30,7 @@ import { COURSE_DATA } from './Courses';
 
 const CourseGoals: React.FC = () => {
   const [startedDeleting, setStartedDeleting] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
   const selectedCourseId = useParams<{ courseId: string }>().courseId;
 
   const selectedCourse = COURSE_DATA.find(c => c.id === selectedCourseId);
@@ -39,7 +41,7 @@ const CourseGoals: React.FC = () => {
 
   const deleteGoalHandler = () => {
     setStartedDeleting(false);
-    console.log('Deleted...');
+    setToastMessage('Deleted goal!');
   };
 
   const startEditGoalHandler = (event: React.MouseEvent) => {
@@ -53,6 +55,16 @@ const CourseGoals: React.FC = () => {
 
   return (
     <React.Fragment>
+      <IonToast
+        isOpen={!!toastMessage}
+        message={toastMessage}
+        duration={2000}
+        color='success'
+        position='middle'
+        onDidDismiss={ () => {
+          setToastMessage('');
+        }}
+      />
       <IonAlert
         isOpen={startedDeleting}
         header='Are you sure?'
