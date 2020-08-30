@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import {
   IonHeader,
@@ -41,6 +41,8 @@ const CourseGoals: React.FC = () => {
 
   const [selectedGoal, setSelectedGoal] = useState<Goal | null>(null);
 
+  const slidingOptionRef = useRef<HTMLIonItemSlidingElement>(null);
+
   const selectedCourseId = useParams<{ courseId: string }>().courseId;
 
   const selectedCourse = COURSE_DATA.find((c) => c.id === selectedCourseId);
@@ -57,6 +59,7 @@ const CourseGoals: React.FC = () => {
   const startEditGoalHandler = (goalId: string, event: React.MouseEvent) => {
     event.stopPropagation();
     const goal = selectedCourse?.goals.find((g) => g.id === goalId);
+    slidingOptionRef.current?.closeOpened();
     if (!goal) {
       return;
     }
@@ -135,7 +138,7 @@ const CourseGoals: React.FC = () => {
           {selectedCourse && (
             <IonList>
               {selectedCourse.goals.map((goal) => (
-                <IonItemSliding key={goal.id}>
+                <IonItemSliding key={goal.id} ref={slidingOptionRef}>
                   <IonItemOptions side="start">
                     <IonItemOption
                       onClick={startDeleteGoalHandler}
