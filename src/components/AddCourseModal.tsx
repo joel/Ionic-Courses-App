@@ -17,7 +17,11 @@ import {
   IonText,
 } from "@ionic/react";
 
-const AddCourseModal: React.FC<{ show: boolean; onCancel: () => void }> = (
+const AddCourseModal: React.FC<{ 
+    show: boolean; 
+    onCancel: () => void;
+    onSave: (title: string, date: Date) => void;
+}> = (
   props
 ) => {
   const [error, setError] = useState("");
@@ -39,6 +43,8 @@ const AddCourseModal: React.FC<{ show: boolean; onCancel: () => void }> = (
     }
 
     setError("");
+
+    props.onSave(enteredTitle.toString(), new Date(selectedDate));
   };
 
   return (
