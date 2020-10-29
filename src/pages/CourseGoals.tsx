@@ -10,12 +10,7 @@ import {
   IonButton,
   IonBackButton,
   IonList,
-  IonItem,
-  IonLabel,
   IonIcon,
-  IonItemSliding,
-  IonItemOptions,
-  IonItemOption,
   IonFab,
   IonFabButton,
   isPlatform,
@@ -24,10 +19,11 @@ import {
 } from "@ionic/react";
 
 import { useParams } from "react-router-dom";
-import { create, trash, addOutline } from "ionicons/icons";
+import { addOutline } from "ionicons/icons";
 
 import { COURSE_DATA } from "./Courses";
 import EditModal from "../components/EditModal";
+import EditableGoalItem from "../components/EditableGoalItem";
 
 const CourseGoals: React.FC = () => {
   const [startedDeleting, setStartedDeleting] = useState(false);
@@ -138,26 +134,13 @@ const CourseGoals: React.FC = () => {
           {selectedCourse && (
             <IonList>
               {selectedCourse.goals.map((goal) => (
-                <IonItemSliding key={goal.id} ref={slidingOptionRef}>
-                  <IonItemOptions side="start">
-                    <IonItemOption
-                      onClick={startDeleteGoalHandler}
-                      color="danger"
-                    >
-                      <IonIcon slot="icon-only" icon={trash} />
-                    </IonItemOption>
-                  </IonItemOptions>
-                  <IonItem lines="full">
-                    <IonLabel>{goal.text}</IonLabel>
-                  </IonItem>
-                  <IonItemOptions side="end">
-                    <IonItemOption
-                      onClick={startEditGoalHandler.bind(null, goal.id)}
-                    >
-                      <IonIcon slot="icon-only" icon={create} />
-                    </IonItemOption>
-                  </IonItemOptions>
-                </IonItemSliding>
+                <EditableGoalItem 
+                  key={goal.id}
+                  slidingRef={slidingOptionRef}
+                  text={goal.text}
+                  onStartDelete={startDeleteGoalHandler}
+                  onStartEdit={startEditGoalHandler.bind(null, goal.id)}
+                />
               ))}
             </IonList>
           )}
